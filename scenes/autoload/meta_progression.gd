@@ -1,0 +1,58 @@
+extends Node
+
+const SAVE_FILE_PATH := "user://game.save"
+
+var save_data:Dictionary = {
+	"win_count":0,
+	"loss_count":0,
+	"meta_upgrade_currency":0,
+	"meta_upgrades":{
+		"experience_gain":{
+			"quantity":0
+		}
+	}
+	
+}
+
+func _ready() -> void:
+	GameEvents.experience_collected.connect(on_experience_collected)
+	load_save_file()
+
+
+func load_save_file() -> void:
+	if !FileAccess.file_exists(SAVE_FILE_PATH):
+		return
+	
+	var file:FileAccess = FileAccess.open(SAVE_FILE_PATH, FileAccess.READ)
+	save_data = file.get_var()
+
+
+func save() -> void:
+	var file:FileAccess = FileAccess.open(SAVE_FILE_PATH, FileAccess.WRITE)
+	file.store_var(save_data)
+
+
+func add_meta_upgrade(meta_upgrade:MetaUpgrade) -> void:
+	if !save_data.meta_upgrades.has(meta_upgrade.id):
+		save_data.meta_upgrades[meta_upgrade.id] = {"quantity" : 0}
+	
+	save_data.meta_upgrades[meta_upgrade.id].quantity += 1
+	save()
+	
+
+
+
+
+func get_current_meta_upgrade_quantity(upgrade_id:String) -> int:
+	if save_data.meta_upgrades.has(upgrade_id):
+		return save_data.meta_upgrades[upgrade_id].quantity
+	
+	return 0
+
+
+func get_current_currency() -> int:
+	return max(save_data.meta_upgrade_currency, 0)
+
+
+func on_experience_collected(number:int) -> void:
+	save_data.meta_upgrade_currency += number

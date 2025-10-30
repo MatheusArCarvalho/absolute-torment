@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="MetaUpgrade" load_steps=2 format=3 uid="uid://b10h28bhbrpav"]
+
+[ext_resource type="Script" uid="uid://d1wade0pcjm5q" path="res://resources/meta_upgrades/meta_upgrade.gd" id="1_j6tqy"]
+
+[resource]
+script = ExtResource("1_j6tqy")
+id = "experience_gain"
+max_quantity = 5
+experience_cost = 100
+title = "Increase Experience"
+description = "Increases experience drop rate by 10%"
+metadata/_custom_type_script = "uid://d1wade0pcjm5q"

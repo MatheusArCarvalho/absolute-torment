@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="AbilityUpgrade" load_steps=2 format=3 uid="uid://bf34ofhwifwn2"]
+
+[ext_resource type="Script" uid="uid://chw54coqyxqq7" path="res://resources/upgrades/ability_upgrade.gd" id="1_28ma6"]
+
+[resource]
+script = ExtResource("1_28ma6")
+id = "sword_radius"
+max_quantity = 0
+upgrade_name = "Arsenal"
+description = "Increases your sword attack radius by 10%."

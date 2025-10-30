@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://5e171vixwcy2"]
+
+[ext_resource type="Script" uid="uid://cacefl4bjii55" path="res://scenes/manager/arena_time_manager.gd" id="1_qvs6m"]
+[ext_resource type="PackedScene" uid="uid://bgu1wctf7l3gn" path="res://scenes/UI/end_screen.tscn" id="2_hpwey"]
+
+[node name="ArenaTimeManager" type="Node"]
+script = ExtResource("1_qvs6m")
+end_screen_scene = ExtResource("2_hpwey")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 300.0
+one_shot = true
+autostart = true

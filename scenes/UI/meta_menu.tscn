@@ -1,0 +1,68 @@
+[gd_scene load_steps=7 format=3 uid="uid://cs5fnwjasn7ny"]
+
+[ext_resource type="Script" uid="uid://dfss1h83mxn27" path="res://scenes/UI/meta_menu.gd" id="1_535do"]
+[ext_resource type="PackedScene" uid="uid://cfg0wyp8onc0a" path="res://scenes/UI/meta_upgrade_card.tscn" id="2_535do"]
+[ext_resource type="Script" uid="uid://d1wade0pcjm5q" path="res://resources/meta_upgrades/meta_upgrade.gd" id="2_un2g6"]
+[ext_resource type="PackedScene" uid="uid://w753p57f1x5c" path="res://scenes/component/sound_button.tscn" id="2_wjsfc"]
+[ext_resource type="Resource" uid="uid://b10h28bhbrpav" path="res://resources/meta_upgrades/experience_gain.tres" id="3_v17f0"]
+[ext_resource type="PackedScene" uid="uid://6ryeokjmtfvy" path="res://scenes/UI/color_vignette.tscn" id="4_v17f0"]
+
+[node name="MetaMenu" type="Node"]
+process_mode = 3
+script = ExtResource("1_535do")
+meta_upgrades = Array[ExtResource("2_un2g6")]([ExtResource("3_v17f0")])
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 3
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.608, 0.298, 0.639, 0.6)
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+
+[node name="BackButton" parent="CanvasLayer/MarginContainer/VBoxContainer" instance=ExtResource("2_wjsfc")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+text = "Back"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+clip_contents = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16
+columns = 3
+
+[node name="MetaUpgradeCard" parent="CanvasLayer/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/GridContainer" instance=ExtResource("2_535do")]
+layout_mode = 2
+
+[node name="ColorVignette" parent="CanvasLayer" instance=ExtResource("4_v17f0")]
